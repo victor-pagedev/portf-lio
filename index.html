@@ -1,221 +1,480 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio - Victor Isaque (DevKPages)</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DevKPages | Victor Isaque</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: #0b0f19;
-      color: #f1f5f9;
-      line-height: 1.6;
-    }
+<style>
+:root{
+  --bg:#05060a;
+  --card:#0b0f19;
+  --stroke:#1a2233;
+  --text:#e5e7eb;
+  --muted:#9aa4b2;
+  --blue:#3b82f6;
+}
 
-    header, main, footer {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 5px;
-    }
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
 
-    .subtitle {
-      color: #94a3b8;
-      margin-bottom: 15px;
-    }
+/* container */
+.container{
+  max-width:1050px;
+  margin:auto;
+  padding:22px;
+}
 
-    .tags span {
-      display: inline-block;
-      background: #1f2937;
-      padding: 6px 10px;
-      margin: 5px 5px 0 0;
-      border-radius: 999px;
-      font-size: 12px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 0;
+}
 
-    .tags span:hover {
-      background: #334155;
-      transform: scale(1.05);
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    section { margin-top: 40px; }
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--blue),#1d4ed8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  color:white;
+}
+.logo-img{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid var(--stroke);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:floatLogo 3.5s ease-in-out infinite;
+}
 
-    h2 {
-      border-left: 4px solid #3b82f6;
-      padding-left: 10px;
-      margin-bottom: 10px;
-    }
+.logo-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
 
-    .card {
-      background: #111827;
-      padding: 16px;
-      border-radius: 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    }
+/* animação flutuante */
+@keyframes floatLogo{
+  0%{ transform:translateY(0px); }
+  50%{ transform:translateY(-6px); }
+  100%{ transform:translateY(0px); }
+}
+.brand span{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+}
 
-    .card img {
-      width: 100%;
-      max-height: 260px;
-      object-fit: cover;
-      margin-top: 12px;
-      border-radius: 12px;
-      cursor: pointer;
-    }
+/* HERO */
+.hero{
+  margin-top:30px;
+  padding:55px 30px;
+  border:1px solid var(--stroke);
+  border-radius:18px;
+  background:radial-gradient(circle at top, #0a0f1f, #05060a);
+}
 
-    footer {
-      text-align: center;
-      color: #64748b;
-      font-size: 12px;
-      margin-top: 40px;
-    }
+.hero h1{
+  font-size:44px;
+  line-height:1.1;
+  letter-spacing:-1px;
+}
 
-    /* ===== OVERLAYS (NÃO BUGAM COM SCROLL) ===== */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.88);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: 20px;
-    }
+.hero p{
+  margin-top:12px;
+  color:var(--muted);
+  max-width:650px;
+}
 
-    .box {
-      background: #111827;
-      border: 1px solid #334155;
-      padding: 20px;
-      border-radius: 14px;
-      max-width: 520px;
-      width: 100%;
-      position: relative;
-    }
+/* CTA */
+.cta{
+  margin-top:22px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-    .overlay img {
-      max-width: 90vw;
-      max-height: 85vh;
-      border-radius: 12px;
-    }
+.btn{
+  padding:12px 16px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+  transition:.2s;
+}
 
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      font-size: 28px;
-      cursor: pointer;
-      color: #fff;
-    }
-  </style>
+.btn.primary{
+  background:linear-gradient(135deg,var(--blue),#1d4ed8);
+  color:white;
+}
+
+.btn.secondary{
+  border:1px solid var(--stroke);
+  color:var(--text);
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+/* SECTIONS */
+section{
+  margin-top:60px;
+}
+
+h2{
+  font-size:18px;
+  margin-bottom:14px;
+  color:white;
+  letter-spacing:.5px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  padding:18px;
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:var(--blue);
+}
+
+/* badge */
+.badge{
+  display:inline-block;
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:#0f172a;
+  border:1px solid var(--stroke);
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+/* skills */
+.skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.skill{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#0b1220;
+  border:1px solid var(--stroke);
+  color:var(--muted);
+}
+
+/* contact */
+.contact{
+  padding:22px;
+  border-radius:16px;
+  border:1px solid var(--stroke);
+  background:#070b14;
+}
+
+.whats{
+  margin-top:15px;
+  display:inline-block;
+  padding:12px 16px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--blue),#1d4ed8);
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* footer */
+footer{
+  margin-top:60px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* glow leve azul */
+.card:hover, .btn.primary{
+  box-shadow:0 0 20px rgba(59,130,246,.15);
+}
+.about{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap;
+  padding:20px;
+  border:1px solid var(--stroke);
+  border-radius:16px;
+  background:var(--card);
+}
+
+/* FOTO FLUTUANTE */
+.avatar-box{
+  width:120px;
+  height:120px;
+  border-radius:18px;
+  overflow:hidden;
+  border:2px solid var(--blue);
+  box-shadow:0 0 25px rgba(59,130,246,.15);
+  animation:float 4s ease-in-out infinite;
+}
+
+.avatar-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* texto */
+.about-text{
+  flex:1;
+  color:var(--muted);
+}
+
+.about-text b{
+  color:white;
+}
+
+/* animação subir/descer */
+@keyframes float{
+  0%{
+    transform:translateY(0px);
+  }
+  50%{
+    transform:translateY(-10px);
+  }
+  100%{
+    transform:translateY(0px);
+  }
+}
+
+/* mobile */
+@media(max-width:768px){
+  .about{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+.contact-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.contact-text .muted{
+  color:var(--muted);
+  margin-top:4px;
+}
+
+/* botão */
+.whats{
+  padding:12px 16px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--blue),#1d4ed8);
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  white-space:nowrap;
+  transition:.2s;
+}
+
+.whats:hover{
+  transform:translateY(-3px);
+}
+
+/* MOBILE: empilha tudo */
+@media(max-width:768px){
+  .contact-row{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .whats{
+    width:100%;
+    text-align:center;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <h1>Victor Isaque</h1>
-  <div class="subtitle">DevKPages • Desenvolvedor Web Freelancer</div>
+<div class="container">
 
-  <div class="tags">
-    <span onclick="openModal('HTML estrutura sites com elementos como texto, imagens e botões.')">HTML</span>
-    <span onclick="openModal('CSS estiliza o visual dos sites com cores e layouts.')">CSS</span>
-    <span onclick="openModal('JavaScript adiciona interatividade e lógica.')">JavaScript</span>
-    <span onclick="openModal('Python usado para back-end, automação e IA.')">Python</span>
-    <span onclick="openModal('Node.js roda JavaScript no servidor.')">Node.js</span>
+<!-- NAV -->
+<nav>
+  <div class="brand">
+    <div class="logo-img">
+  <img src="https://i.imghippo.com/files/SvBt8357sWM.png" alt="DevKPages Logo">
+</div>
+    <div>
+      <strong>DevKPages</strong>
+      <span>Full Stack Developer</span>
+    </div>
   </div>
-</header>
+</nav>
 
-<main>
+<!-- HERO -->
+<div class="hero">
+  <h1>Construo sistemas modernos com foco em performance e design.</h1>
+  <p>
+    Desenvolvimento web full stack com interfaces limpas, rápidas e pensadas para conversão.
+  </p>
 
-  <section>
-    <h2>Sobre mim</h2>
+  <div class="cta">
+    <a class="btn primary" href="https://wa.me/5561981551600">Solicitar orçamento</a>
+    <a class="btn secondary" href="#projetos">Ver projetos</a>
+  </div>
+</div>
+<section>
+<h2>Sobre mim</h2>
+
+<div class="about">
+
+  <div class="avatar-box">
+    <img src="https://i.imghippo.com/files/SvBt8357sWM.png" alt="Victor Isaque">
+  </div>
+
+  <div class="about-text">
     <p>
-      Desenvolvedor web focado em sistemas modernos, seguros e rápidos.
-      Trabalho com front-end e back-end usando HTML, CSS, JavaScript, Python e Node.js.
+      Sou <b>Victor Isaque</b>, desenvolvedor web focado em criar sistemas modernos,
+      rápidos e bem estruturados.
     </p>
-  </section>
 
-  <section>
-    <h2>Projetos</h2>
+    <p>
+      Trabalho com front-end e back-end, sempre buscando performance, design limpo e experiência fluida.
+      Gosto de transformar ideias em produtos reais.
+    </p>
+  </div>
 
-    <div class="card">
-      <strong>Sistema de Login e Senha</strong>
-      <p>Autenticação simples com registro de usuários.</p>
+</div>
+</section>
+<!-- SKILLS -->
+<section>
+<h2>Tecnologias</h2>
+
+<div class="skills">
+  <div class="skill">HTML</div>
+  <div class="skill">CSS</div>
+  <div class="skill">JavaScript</div>
+  <div class="skill">Node.js</div>
+  <div class="skill">Python</div>
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projetos">
+<h2>Projetos</h2>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="badge">Web System</div>
+    <strong>Login System</strong>
+    <p>Sistema de autenticação seguro com estrutura escalável.</p>
+  </div>
+
+  <div class="card">
+    <div class="badge">Dashboard</div>
+    <strong>Painel Admin</strong>
+    <p>Interface para controle de dados com visual limpo.</p>
+  </div>
+
+  <div class="card">
+    <div class="badge">Tool</div>
+    <strong>HTML Tester</strong>
+    <p>Editor HTML em tempo real para testes rápidos.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- SERVICES -->
+<section>
+<h2>Serviços</h2>
+
+<div class="grid">
+
+  <div class="card">
+    <strong>Sites profissionais</strong>
+    <p>Landing pages modernas e otimizadas.</p>
+  </div>
+
+  <div class="card">
+    <strong>Sistemas web</strong>
+    <p>Dashboards, login e aplicações completas.</p>
+  </div>
+
+  <div class="card">
+    <strong>Automação</strong>
+    <p>Soluções com Python e Node.js.</p>
+  </div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section>
+<h2>Contato</h2>
+
+<div class="contact">
+
+  <div class="contact-row">
+    <div class="contact-text">
+      <p>Email: contato@devkpages.com</p>
+      <p class="muted">Disponível para projetos</p>
     </div>
 
-    <div class="card">
-      <strong>Dashboard Admin</strong>
-      <p>Painel para gerenciamento de dados e usuários.</p>
-    </div>
+    <a class="whats"
+    href="https://wa.me/5561981551600?text=Quero%20um%20site%20profissional">
+      Falar no WhatsApp
+    </a>
+  </div>
 
-    <div class="card">
-      <strong>HTML Tester</strong>
-      <p>Ferramenta para testar HTML em tempo real.</p>
-      <img src="https://i.imghippo.com/files/Ljdm1752KTM.jpg" onclick="openImage(this.src)">
-    </div>
-
-  </section>
-
-</main>
-
+</div>
+</section>
 <footer>
-  © <span id="year"></span> Victor Isaque
+© 2026 DevKPages • Victor Isaque
 </footer>
 
-<!-- IMAGEM -->
-<div class="overlay" id="imgOverlay" onclick="closeAll(event)">
-  <img id="imgBig">
 </div>
-
-<!-- TEXTO -->
-<div class="overlay" id="modalOverlay" onclick="closeAll(event)">
-  <div class="box">
-    <span class="close" onclick="closeModal()">×</span>
-    <p id="modalText"></p>
-  </div>
-</div>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  function lockScroll(v){
-    document.body.style.overflow = v ? "hidden" : "auto";
-  }
-
-  function openImage(src){
-    document.getElementById("imgBig").src = src;
-    document.getElementById("imgOverlay").style.display = "flex";
-    lockScroll(true);
-  }
-
-  function closeImage(){
-    document.getElementById("imgOverlay").style.display = "none";
-    lockScroll(false);
-  }
-
-  function openModal(text){
-    document.getElementById("modalText").innerText = text;
-    document.getElementById("modalOverlay").style.display = "flex";
-    lockScroll(true);
-  }
-
-  function closeModal(){
-    document.getElementById("modalOverlay").style.display = "none";
-    lockScroll(false);
-  }
-
-  function closeAll(e){
-    if(e.target.id === "imgOverlay") closeImage();
-    if(e.target.id === "modalOverlay") closeModal();
-  }
-</script>
 
 </body>
-  </html>
+    </html>
